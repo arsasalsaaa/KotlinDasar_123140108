@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "1.9.24" apply false
+    kotlin("jvm") version "2.1.10" apply false
 }
 
 subprojects {
@@ -7,5 +7,17 @@ subprojects {
 
     repositories {
         mavenCentral()
+    }
+
+    // --- Tambahan pengaturan agar Java dan Kotlin sinkron di versi 21 ---
+    tasks.withType<JavaCompile> {
+        sourceCompatibility = "21"
+        targetCompatibility = "21"
+    }
+
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+        kotlinOptions {
+            jvmTarget = "21"
+        }
     }
 }
