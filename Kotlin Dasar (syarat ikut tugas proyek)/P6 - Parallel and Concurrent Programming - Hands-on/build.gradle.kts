@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "1.9.24" apply false
+    kotlin("jvm") version "2.3.10"
 }
 
 subprojects {
@@ -8,4 +8,17 @@ subprojects {
     repositories {
         mavenCentral()
     }
+
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+        compilerOptions.jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21)
+    }
+}
+dependencies {
+    implementation(kotlin("stdlib-jdk8"))
+}
+repositories {
+    mavenCentral()
+}
+kotlin {
+    jvmToolchain(8)
 }

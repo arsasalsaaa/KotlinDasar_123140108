@@ -1,4 +1,5 @@
 import kotlin.concurrent.thread
+import java.util.concurrent.atomic.AtomicInteger
 
 // Hands-on 1: Race Condition
 // Tugas: Dua thread meng-increment sebuah shared counter (var c) sebanyak
@@ -11,16 +12,16 @@ import kotlin.concurrent.thread
 // Gunakan salah satu: `synchronized(this) { }` ATAU `java.util.concurrent.atomic.AtomicInteger`.
 
 class Counter {
-    private var c = 0
+    private val c = AtomicInteger(0)
 
     fun increment() {
         // TODO 1: Bungkus baris di bawah supaya thread-safe
-        c++
+        c.incrementAndGet()
     }
 
     fun value(): Int {
         // TODO 2: Jika kamu memakai AtomicInteger, sesuaikan cara membaca nilainya di sini
-        return c
+        return c.get()
     }
 }
 
