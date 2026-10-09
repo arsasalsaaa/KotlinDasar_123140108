@@ -38,11 +38,20 @@ fun App() {
         var screen by remember { mutableStateOf(Screen.Menu) }
 
         Surface(modifier = Modifier.fillMaxSize()) {
-            Column(
-                modifier = Modifier
+            val isScrollable = screen != Screen.Latihan3 && screen != Screen.Solusi3
+            val columnModifier = if (isScrollable) {
+                Modifier
                     .fillMaxSize()
                     .padding(16.dp)
                     .verticalScroll(rememberScrollState())
+            } else {
+                Modifier
+                    .fillMaxSize()
+                    .padding(16.dp)
+            }
+
+            Column(
+                modifier = columnModifier
             ) {
                 if (screen != Screen.Menu) {
                     Button(onClick = { screen = Screen.Menu }) { Text("< Kembali ke Menu") }
