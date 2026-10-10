@@ -41,20 +41,27 @@ fun App() {
 
         Surface(modifier = Modifier.fillMaxSize()) {
             Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(16.dp)
-                    .verticalScroll(rememberScrollState())
+                modifier = Modifier.fillMaxSize()
             ) {
                 if (screen != Screen.Menu) {
-                    Button(onClick = { screen = Screen.Menu }) { Text("< Kembali ke Menu") }
+                    Button(
+                        onClick = { screen = Screen.Menu },
+                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+                    ) { Text("< Kembali ke Menu") }
                 }
                 when (screen) {
                     Screen.Menu -> {
-                        Text("Hands-on Pertemuan 5")
-                        Text("Navigasi Antar Layar, Passing Data")
-                        Screen.entries.filter { it != Screen.Menu }.forEach { s ->
-                            Button(onClick = { screen = s }) { Text(s.label) }
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(16.dp)
+                                .verticalScroll(rememberScrollState())
+                        ) {
+                            Text("Hands-on Pertemuan 5")
+                            Text("Navigasi Antar Layar, Passing Data")
+                            Screen.entries.filter { it != Screen.Menu }.forEach { s ->
+                                Button(onClick = { screen = s }) { Text(s.label) }
+                            }
                         }
                     }
 
