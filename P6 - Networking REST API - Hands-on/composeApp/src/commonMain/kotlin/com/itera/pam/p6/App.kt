@@ -42,17 +42,21 @@ fun App() {
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(16.dp)
-                    .verticalScroll(rememberScrollState())
+                // .verticalScroll(rememberScrollState()) <--- HAPUS BARIS INI
             ) {
                 if (screen != Screen.Menu) {
                     Button(onClick = { screen = Screen.Menu }) { Text("< Kembali ke Menu") }
                 }
                 when (screen) {
                     Screen.Menu -> {
-                        Text("Hands-on Pertemuan 6")
-                        Text("Networking — Ktor Client & JSON")
-                        Screen.entries.filter { it != Screen.Menu }.forEach { s ->
-                            Button(onClick = { screen = s }) { Text(s.label) }
+                        // Jika khusus menu butuh di-scroll (karena tombolnya banyak),
+                        // pindahkan verticalScroll ke dalam Column khusus Menu ini saja:
+                        Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+                            Text("Hands-on Pertemuan 6")
+                            Text("Networking — Ktor Client & JSON")
+                            Screen.entries.filter { it != Screen.Menu }.forEach { s ->
+                                Button(onClick = { screen = s }) { Text(s.label) }
+                            }
                         }
                     }
 

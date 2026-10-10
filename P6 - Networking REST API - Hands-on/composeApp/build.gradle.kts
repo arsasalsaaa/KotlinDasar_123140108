@@ -33,7 +33,7 @@ kotlin {
 
     sourceSets {
         val desktopMain by getting
-        val iosMain by getting
+        val iosMain by creating
 
         androidMain.dependencies {
             implementation(compose.preview)
@@ -54,6 +54,7 @@ kotlin {
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.kotlinx.serialization.json)
+            implementation(libs.ktor.client.cio)
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
@@ -72,7 +73,7 @@ android {
 
     defaultConfig {
         applicationId = "com.itera.pam.p6"
-        minSdk = libs.versions.android.minSdk.get().toInt()
+minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
         versionName = "1.0"
