@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
+
 plugins {
     kotlin("jvm") version "1.9.24" apply false
 }
@@ -11,5 +13,9 @@ subprojects {
 
     dependencies {
         "implementation"("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
+    }
+
+    configure<KotlinJvmProjectExtension> {
+        jvmToolchain(21)
     }
 }
